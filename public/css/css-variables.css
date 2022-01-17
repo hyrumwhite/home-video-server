@@ -1,0 +1,10 @@
+:root {
+  --border: 1px solid #bbb;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --body-background: #1f2935;
+    --text-color: #fff;
+  }
+}

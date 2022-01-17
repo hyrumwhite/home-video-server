@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Video Client</title>
+	<link rel="stylesheet" href="css/css-variables.css" />
+	<link rel="stylesheet" href="css/main.css" />
+	<link rel="stylesheet" href="components/GenreSliders.css" />
+	<link rel="stylesheet" href="components/VideoPlayer.css" />
+</head>
+<body>
+	<section class="main">
+		<h1>Movie Time 🎬</h1>
+		<progress id="main-progress"></progress>
+		<script src="components/MainProgress.js" type="module"></script>
+		<div class="GenreSlidersSlot"></div>
+		<script src="components/GenreSliders.js" type="module"></script>
+	</section>
+	<header>
+		<button type="icon">🔍</button>
+	</header>
+	<video id="VideoPlayer" class="VideoPlayer">
+		<source id="VideoPlayerSource"></source>
+	</video>
+	<script src="components/VideoPlayer.js" type="module"></script>
+</body>
+</html>
