@@ -1,0 +1,33 @@
+input[type="file"] {
+	display: none;
+}
+
+[query] {
+	display: none;
+}
+
+@media (orientation: landscape) {
+	[query="landscape"] {
+		display: unset;
+	}
+}
+@media (orientation: portrait) {
+	[query="portrait"] {
+		display: unset;
+	}
+}
+
+label.FileUploader {
+	box-sizing: border-box;
+	height: 25vh;
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: hsl(100, 10%, 10%);
+	border: var(--border);
+	border-radius: 6px;
+	width: min(100%, 600px);
+	align-self: center;
+}

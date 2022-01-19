@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Video Client</title>
+		<link rel="stylesheet" href="css/css-variables.css" />
+		<link rel="stylesheet" href="css/main.css" />
+		<link rel="stylesheet" href="components/FileUploader.css" />
+		<link rel="stylesheet" href="components/NewMovieList.css" />
+	</head>
+	<body>
+		<section class="main">
+			<h1>Upload Movies <i class="emoji-icon">💿</i></h1>
+			<ul slot="NewMovieList"></ul>
+			<template id="NewMovieListItemTemplate">
+				<li>
+					<form>
+						<flex-row>
+							<label>
+								<span query="portrait">Tap here to add a thumbnail</span>
+								<span query="landscape">Click or drag to add a thumbnail</span>
+								<input type="file" accept="image/png image/jpg image/gif" />
+							</label>
+							<flex-column>
+								<label>
+									Movie Name
+									<input name="name" type="text" />
+								</label>
+								<label>
+									Genres (comma separated)
+									<input name="genres" type="text" />
+								</label>
+								<label>
+									Tags (comma separated)
+									<input name="tags" type="text" />
+								</label>
+							</flex-column>
+						</flex-row>
+						<button>Upload</button>
+						<progress style="display: none" value></progress>
+					</form>
+				</li>
+			</template>
+			<script src="components/NewMovieList.js" type="module"></script>
+			<label class="FileUploader">
+				<span query="portrait">Tap here to add movies</span>
+				<span query="landscape">Click or drag files here to add movies</span>
+				<input id="fileInput" type="file" multiple accept="video/mp4" />
+			</label>
+			<script src="components/FileUploader.js" type="module"></script>
+		</section>
+		<header>
+			<a href="/">
+				<button type="icon">🎬</button>
+			</a>
+		</header>
+	</body>
+</html>

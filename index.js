@@ -1,14 +1,29 @@
-const express = require("express");
+import express from "express";
+import { videolist } from "./videolist.js";
+import { videostream } from "./videostream.js";
+import { uploadVideo } from "./uploadVideo.js";
+import fileUpload from "express-fileupload";
+import { resolve } from "path";
+
 const app = express();
 
-app.get("/watch/:id", (req, res) => {
-  res.sendFile(`${__dirname}/public/watch.html`);
-});
-app.get("*", express.static("./public"));
+const PORT = 8089;
 
-const PORT = 8090;
+app.use(fileUpload());
+
+app.post("/video", uploadVideo);
+app.get("/video", videolist);
+app.get("/video/:filename", videostream);
+app.get("/upload", (req, res) => {
+	res.sendFile(`${resolve()}/public/upload.html`);
+});
+
+app.get("/components/*", express.static("./public"));
+app.get("/css/*", express.static("./public"));
+app.get("/thumbnails/*", express.static("./public"));
+app.get("*", (req, res) => {
+	res.sendFile(`${resolve()}/public/index.html`);
+});
 
 app.listen(PORT);
-
-console.info(`Server running on port: ${PORT}`);
-console.info(`URL: http://localhost:${PORT}`);
+console.info(`Server started on port: ${PORT}`);

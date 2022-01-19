@@ -1,10 +1,10 @@
 :root {
-  --border: 1px solid #bbb;
+	--border: 1px solid #bbb;
+	--body-background: black;
+	--text-color: #fff;
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --body-background: #1f2935;
-    --text-color: #fff;
-  }
+	:root {
+	}
 }
