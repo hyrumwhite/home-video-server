@@ -20,11 +20,9 @@ const createMovieList = ({ detail: movies }) => {
 			nameInput.value = movie.name;
 		}
 		for (let slot of slots) {
-			slot.appendChild();
+			slot.appendChild(li);
 		}
 	}
 };
 
-events.on("movies-selected", ({ detail: movies }) => {
-	console.log(movies);
-});
+events.on("movies-selected", createMovieList);

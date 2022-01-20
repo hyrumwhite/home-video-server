@@ -17,28 +17,30 @@
 			<template id="NewMovieListItemTemplate">
 				<li>
 					<form>
-						<flex-row>
-							<label>
-								<span query="portrait">Tap here to add a thumbnail</span>
-								<span query="landscape">Click or drag to add a thumbnail</span>
+						<flex-column class="input-container">
+							<label class="upload-label">
+								<span class="thumbnail-icon">+</span>
+								<span>Thumbnail</span>
 								<input type="file" accept="image/png image/jpg image/gif" />
 							</label>
-							<flex-column>
-								<label>
-									Movie Name
-									<input name="name" type="text" />
-								</label>
-								<label>
-									Genres (comma separated)
-									<input name="genres" type="text" />
-								</label>
-								<label>
-									Tags (comma separated)
-									<input name="tags" type="text" />
-								</label>
-							</flex-column>
-						</flex-row>
-						<button>Upload</button>
+							<label>
+								Movie Name
+								<input name="name" type="text" />
+							</label>
+							<label>
+								Genres
+								<input name="genres" type="text" placeholder="Action, Scifi" />
+							</label>
+							<label>
+								Tags
+								<input
+									name="tags"
+									type="text"
+									placeholder="Pedro Pascal, Nick Cage"
+								/>
+							</label>
+							<button>Upload</button>
+						</flex-column>
 						<progress style="display: none" value></progress>
 					</form>
 				</li>
