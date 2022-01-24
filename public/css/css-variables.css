@@ -2,11 +2,15 @@
 	--border: 1px solid #bbb;
 	--body-background: black;
 	--text-color: #fff;
-	--card-background: hsl(100, 10%, 10%);
+	--card-background: hsl(151, 10%, 10%);
 	--card-border: 1px solid hsl(100, 0%, 30%);
 	--card-radius: 6px;
 
 	--input-border: 2px solid hsl(100, 0%, 80%);
+
+	--button-background: hsl(151deg 47% 62%);
+	--button-border: 2px solid hsl(151deg 47% 42%);
+	--button-text: hsl(151deg 47% 12%);
 }
 
 @media (prefers-color-scheme: dark) {

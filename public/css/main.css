@@ -86,14 +86,24 @@ label input {
 	background: transparent;
 	color: var(--text-color);
 	border: var(--input-border);
-	padding: 8px;
+	padding: 1rem;
 	border-radius: var(--card-radius);
 }
 
 h1 {
 	margin: 0px;
 }
-
+button {
+	box-sizing: border-box;
+	background: var(--button-background);
+	border-radius: var(--card-radius);
+	border: var(--button-border);
+	color: var(--button-text);
+	padding: 1rem;
+	font-weight: bold;
+	line-height: 1rem;
+	font-size: 1.5rem;
+}
 flex-row {
 	display: flex;
 }
