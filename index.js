@@ -15,14 +15,16 @@ app.post("/video", uploadVideo);
 app.get("/video", videolist);
 app.get("/video/:filename", videostream);
 app.get("/upload", (req, res) => {
-	res.sendFile(`${resolve()}/public/upload.html`);
+  res.sendFile(`${resolve()}/public/upload.html`);
 });
 
 app.get("/components/*", express.static("./public"));
+app.get("/assets/*", express.static("./public"));
 app.get("/css/*", express.static("./public"));
+app.get("/html/*", express.static("./public"));
 app.get("/thumbnails/*", express.static("./public"));
 app.get("*", (req, res) => {
-	res.sendFile(`${resolve()}/public/index.html`);
+  res.sendFile(`${resolve()}/public/index.html`);
 });
 
 app.listen(PORT);

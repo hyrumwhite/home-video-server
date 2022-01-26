@@ -1,5 +1,6 @@
 import { events } from "./events.js";
-import { templateQuery } from "./template.js";
+import { templateQuery } from "../assets/TemplateQuery.js";
+import { scriptFetch } from "../assets/ScriptFetch.js";
 
 let slots = document.querySelectorAll(".GenreSlidersSlot");
 
@@ -11,8 +12,8 @@ const getData = () =>
           genre: "Action",
           movies: [
             { name: "Wolfwalkers", id: "wolfwalkers", thumbnail: true },
-            { name: "Predator", id: 1235 },
-            { name: "Psycho Goreman", id: 1236 },
+            { name: "Song of the Sea", id: "songofthesea" },
+            { name: "Secret of Kells", id: "secretofkells" },
             { name: "Indiana Jones", id: 12347 },
             { name: "Twilight", id: 1238 },
             { name: "Free Solo", id: 1239 },
@@ -46,9 +47,9 @@ const handleAnchorClick = ($event) => {
   }
 };
 
-const generateSliders = async (slot) => {
-  let genres = await getData();
-};
+// const generateSliders = async (slot) => {
+//   let genres = await getData();
+// };
 
 const generateSliders = async (slot) => {
   let genres = await getData();

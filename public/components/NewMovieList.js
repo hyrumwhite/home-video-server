@@ -1,5 +1,5 @@
 import { events } from "./events.js";
-import { templateQuery } from "./template.js";
+import { templateQuery } from "../assets/TemplateQuery.js";
 let slots = document.querySelectorAll(`[slot="NewMovieList"]`);
 /**
  * Populates a UL with movies
