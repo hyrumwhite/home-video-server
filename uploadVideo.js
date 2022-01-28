@@ -51,7 +51,8 @@ export const uploadVideo = async (req, res) => {
 	// } catch (e) {
 	// 	console.error(e);
 	// }
-	await fs.writeFile(`videos/${req.body.name}.mp4`, req.files.video.data);
+	console.log(req.files);
+	// await fs.writeFile(`videos/${req.body.name}.mp4`, req.files.video.data);
 	// console.log("made it here!!");
 	// if (req.files.thumbnail) {
 	// 	await fs.writeFile(

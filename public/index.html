@@ -5,29 +5,35 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Video Client</title>
+	<link rel="icon" href="assets/favicon.png" />
 	<link rel="stylesheet" href="css/css-variables.css" />
 	<link rel="stylesheet" href="css/main.css" />
 	<link rel="stylesheet" href="components/GenreSliders.css" />
 	<link rel="stylesheet" href="components/VideoPlayer.css" />
-	<script src="components/MainProgress.js" type="module"></script>
 	<script src="components/GenreSliders.js" type="module"></script>
 	<script src="components/VideoPlayer.js" type="module"></script>
 </head>
 <body>
 	<section class="main">
 		<h1>Movie Time <i class="emoji-icon">🎬</i></h1>
-		<progress id="main-progress"></progress>
 		<div slot="GenreSliders"></div>
-		<template id="GenreSliderTemplate">
-			<nav class="GenreSlider">
-				<h1></h1>
-				<div class="horizontal-scroller">
-					<a>
-						<img loading="lazy" intrinsicsize="100 x 150"/>
-					</a>
-				</div>
-			</nav>
-		</template>
+		<nav id="GenreSliderTemplate" class="GenreSlider">
+			<h1 class="placeholder">Placeholder</h1>
+			<div class="horizontal-scroller">
+				<a class="placeholder">
+					<img loading="lazy" intrinsicsize="100 x 150"/>
+				</a>
+				<a class="placeholder">
+					<img loading="lazy" intrinsicsize="100 x 150"/>
+				</a>
+				<a class="placeholder">
+					<img loading="lazy" intrinsicsize="100 x 150"/>
+				</a>
+				<a class="placeholder">
+					<img loading="lazy" intrinsicsize="100 x 150"/>
+				</a>
+			</div>
+		</nav>
 	</section>
 	<header>
 		<button type="icon">🔍</button>

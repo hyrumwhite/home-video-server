@@ -5,6 +5,7 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Video Client</title>
+		<link rel="icon" href="assets/favicon.png" />
 		<link rel="stylesheet" href="css/css-variables.css" />
 		<link rel="stylesheet" href="css/main.css" />
 		<link rel="stylesheet" href="components/FileUploader.css" />
@@ -16,7 +17,7 @@
 			<ul slot="NewMovieList"></ul>
 			<template id="NewMovieListItemTemplate">
 				<li>
-					<form>
+					<form method="POST" action="/video">
 						<flex-column class="input-container">
 							<label class="upload-label">
 								<span class="thumbnail-icon">+</span>
@@ -39,7 +40,7 @@
 									placeholder="Pedro Pascal, Nick Cage"
 								/>
 							</label>
-							<button>Upload</button>
+							<input type="submit" value="Upload" />
 						</flex-column>
 						<progress style="display: none" value></progress>
 					</form>
