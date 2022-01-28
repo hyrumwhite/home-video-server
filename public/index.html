@@ -9,24 +9,25 @@
 	<link rel="stylesheet" href="css/main.css" />
 	<link rel="stylesheet" href="components/GenreSliders.css" />
 	<link rel="stylesheet" href="components/VideoPlayer.css" />
+	<script src="components/MainProgress.js" type="module"></script>
+	<script src="components/GenreSliders.js" type="module"></script>
+	<script src="components/VideoPlayer.js" type="module"></script>
 </head>
 <body>
 	<section class="main">
 		<h1>Movie Time <i class="emoji-icon">🎬</i></h1>
 		<progress id="main-progress"></progress>
-		<script src="components/MainProgress.js" type="module"></script>
-		<div class="GenreSlidersSlot"></div>
-		<template id="GenreSlider">
+		<div slot="GenreSliders"></div>
+		<template id="GenreSliderTemplate">
 			<nav class="GenreSlider">
 				<h1></h1>
 				<div class="horizontal-scroller">
 					<a>
-						<img intrinsicsize="100 x 150"/>
+						<img loading="lazy" intrinsicsize="100 x 150"/>
 					</a>
 				</div>
 			</nav>
 		</template>
-		<script src="components/GenreSliders.js" type="module"></script>
 	</section>
 	<header>
 		<button type="icon">🔍</button>
@@ -34,6 +35,5 @@
 	<video id="VideoPlayer" class="VideoPlayer">
 		<source id="VideoPlayerSource"></source>
 	</video>
-	<script src="components/VideoPlayer.js" type="module"></script>
 </body>
 </html>
