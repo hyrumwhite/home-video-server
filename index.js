@@ -18,6 +18,9 @@ app.get("/video/:filename", videostream);
 app.get("/upload", (req, res) => {
 	res.sendFile(`${resolve()}/public/upload.html`);
 });
+app.get("/test", (req, res) => {
+	res.sendFile(`${resolve()}/public/test.html`);
+});
 
 app.get("/components/*", express.static("./public"));
 app.get("/assets/*", express.static("./public"));

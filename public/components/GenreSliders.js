@@ -51,12 +51,19 @@ const generateSliders = async (slot) => {
 	let genres = await getData();
 	let template = document.querySelector("#GenreSliderTemplate");
 	for (let genre of genres) {
-		let parentEl = ErgoElement(template.cloneNode(true));
-		parentEl.h1.textContent = genre.genre;
-		parentEl.h1.classList.remove("placeholder");
-		let horizontalScroller = parentEl[".horizontal-scroller"];
+		let {
+			self: nav,
+			h1,
+			".horizontal-scroller": horizontalScroller,
+			"a:first-child": firstAnchor,
+			"a.placeholder": placeholders,
+		} = ErgoElement(template.cloneNode(true));
+
+		h1.textContent = genre.genre;
+		h1.classList.remove("placeholder");
+
 		for (let movie of genre.movies) {
-			let anchor = parentEl.a[0].cloneNode(Boolean(movie.thumbnail));
+			let anchor = firstAnchor.cloneNode(Boolean(movie.thumbnail));
 			anchor.href = `/watch/${movie.id}`;
 			anchor.setAttribute("key", movie.id);
 			anchor.classList.remove("placeholder");
@@ -70,9 +77,9 @@ const generateSliders = async (slot) => {
 			anchor.addEventListener("click", handleAnchorClick);
 			horizontalScroller.appendChild(anchor);
 		}
-		parentEl`a.placeholder`.remove();
-		console.log(parentEl.self);
-		slot.parentElement.insertBefore(parentEl.self, slot);
+
+		placeholders.remove();
+		slot.parentElement.insertBefore(nav, slot);
 	}
 	template.remove();
 	slot.remove();

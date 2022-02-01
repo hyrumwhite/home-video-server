@@ -18,8 +18,13 @@ export const ArrayProxy = function (array) {
 				let firstItem = target[0];
 				if (firstItem && typeof firstItem[property] === "function") {
 					return (...params) => {
-						for (let item of target) {
-							item[property](...params);
+						for (let i = 0; i < target.length; i++) {
+							let item = target[i];
+							if (typeof params[0] === "function") {
+								item[property](...params[0](i, ...params.slice(1), item));
+							} else {
+								item[property](...params);
+							}
 						}
 					};
 				}
@@ -35,7 +40,7 @@ export const ArrayProxy = function (array) {
 	});
 };
 
-export const ErgoElement = function (element) {
+export const ErgoElement = function (element, { prefix = "$" } = {}) {
 	if (typeof element === "string") {
 		document.querySelector(element);
 	}
@@ -61,8 +66,8 @@ export const ErgoElement = function (element) {
 			} else if (prop in element) {
 				return element[prop];
 			} else {
-				if (prop.startsWith("$")) {
-					prop = prop.slice(1);
+				if (prop && prop.startsWith(prefix)) {
+					prop = prop.slice(prefix.length);
 				}
 				return target(prop);
 			}

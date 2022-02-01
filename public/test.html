@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<section>
+			asdf
+			<div>
+				<span></span>
+			</div>
+			<div>
+				<span></span>
+			</div>
+			<div>
+				<span></span>
+				<span></span>
+				<span></span>
+			</div>
+		</section>
+		<script type="module">
+			import { ErgoElement } from "./assets/ErgoElement.js";
+			let doc = ErgoElement(document, { proxyGroups: true });
+			console.log(doc.div.span[0]);
+		</script>
+	</body>
+</html>

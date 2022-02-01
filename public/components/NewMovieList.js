@@ -28,6 +28,7 @@ const createMovieList = ({ detail: movies }) => {
 	let template = templateQuery("#NewMovieListItemTemplate");
 	for (let movie of movies) {
 		let { form, li } = ErgoElement(template.clone());
+
 		form.addEventListener("submit", handleFormSubmit);
 		if (li) {
 			let nameInput = li`input[name="name"]`;
