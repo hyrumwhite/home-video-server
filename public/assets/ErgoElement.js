@@ -8,6 +8,7 @@ export const ArrayProxy = function (array) {
 					item[property] = value;
 				}
 			}
+			return true;
 		},
 		get(target, property, receiver) {
 			if (property in target) {
@@ -20,8 +21,14 @@ export const ArrayProxy = function (array) {
 					return (...params) => {
 						for (let i = 0; i < target.length; i++) {
 							let item = target[i];
+							let fn = item[property].bind(item);
 							if (typeof params[0] === "function") {
-								item[property](...params[0](i, ...params.slice(1), item));
+								let functionResponse = params[0](i, ...params.slice(1), item);
+								if (functionResponse instanceof Array) {
+									fn(...functionResponse);
+								} else {
+									fn(functionResponse);
+								}
 							} else {
 								item[property](...params);
 							}
@@ -42,7 +49,7 @@ export const ArrayProxy = function (array) {
 
 export const ErgoElement = function (element, { prefix = "$" } = {}) {
 	if (typeof element === "string") {
-		document.querySelector(element);
+		element = document.querySelector(element);
 	}
 
 	function getElement(selector) {

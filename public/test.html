@@ -7,24 +7,47 @@
 		<title>Document</title>
 	</head>
 	<body>
+		<h1>Todos</h1>
 		<section>
-			asdf
 			<div>
-				<span></span>
+				<input />
 			</div>
-			<div>
-				<span></span>
-			</div>
-			<div>
-				<span></span>
-				<span></span>
-				<span></span>
-			</div>
+			<ul></ul>
 		</section>
+		<template id="taskrow">
+			<li>
+				<label>
+					<input type="checkbox" />
+					<!-- label goes here -->
+				</label>
+				<button>✖️</button>
+			</li>
+		</template>
 		<script type="module">
 			import { ErgoElement } from "./assets/ErgoElement.js";
-			let doc = ErgoElement(document, { proxyGroups: true });
-			console.log(doc.div.span[0]);
+
+			const template = document.querySelector("#taskrow");
+			const section = ErgoElement("section");
+
+			section.input.addEventListener("keydown", ($event) => {
+				if ($event.key === "Enter") {
+					addTask($event.target.value);
+					$event.target.value = "";
+				}
+			});
+
+			const removeTask = ($event) => {
+				$event.target.closest("li").remove();
+			};
+
+			const addTask = (taskLabel) => {
+				if (template) {
+					const newRow = ErgoElement(template.content.cloneNode(true));
+					newRow.label.appendChild(document.createTextNode(taskLabel));
+					newRow.button.addEventListener("click", removeTask);
+					section.ul.appendChild(newRow.self);
+				}
+			};
 		</script>
 	</body>
 </html>
