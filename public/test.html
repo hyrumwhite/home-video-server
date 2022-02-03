@@ -5,34 +5,109 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Document</title>
+		<style>
+			body, html {
+				background: hsl(0deg, 0%, 94%);
+				width: 100%;
+				height: 100%;
+				font-family: Arial, Helvetica, sans-serif;
+			}
+			body {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+			}
+			section {
+				border: 1px solid black;
+				border-radius: 6px;
+				box-sizing: border-box;
+				background: white;
+				box-shadow: 8px 8px 0px 0px rgba(0,0,0,0.75);
+				width: min(100%, 700px);
+				display: flex;
+				flex-direction: column;
+				padding: 1.5rem;
+			}
+			label {
+				position: relative;
+				font-size: .875rem;
+			}
+			[prompt=""] {
+				background:blue;
+			}
+			label[prompt]::after {
+				content: attr(prompt);
+				position: absolute;
+				right: 4px;
+				bottom: 4px;
+				opacity: .4;
+				font-family: Arial, Helvetica, sans-serif;
+				font-weight: bold;
+			}
+			input:not([type="checkbox"]) {
+				width: 100%;
+				box-sizing: border-box;
+			}
+			input[type="checkbox"]:checked+span {
+				text-decoration: line-through;
+			}
+			ul {
+				padding-left: 0px;
+			}
+			li {
+				list-style: none;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+			}
+			li label {
+				display: flex;
+				align-items: center;
+			}
+			button {
+				background: transparent;
+				border: none;
+				color: hsl(236, 82%, 79%);
+			}
+		</style>
 	</head>
 	<body>
 		<h1>Todos</h1>
 		<section>
-			<div>
-				<input />
-			</div>
+			<label>
+				Create a new task:
+				<input placeholder="Do the dishes"/>
+			</label>
 			<ul></ul>
 		</section>
 		<template id="taskrow">
 			<li>
 				<label>
 					<input type="checkbox" />
-					<!-- label goes here -->
+					<span></span>
 				</label>
-				<button>✖️</button>
+				<button>remove</button>
 			</li>
 		</template>
 		<script type="module">
 			import { ErgoElement } from "./assets/ErgoElement.js";
 
 			const template = document.querySelector("#taskrow");
-			const section = ErgoElement("section");
+			const {input, ul, label} = ErgoElement("section");
 
-			section.input.addEventListener("keydown", ($event) => {
+			input.addEventListener("input", ($event) => {
+				if($event.target.value) {
+					label.setAttribute('prompt', 'Press Enter');
+				} else {
+					label.removeAttribute('prompt');
+				}
+			})
+
+			input.addEventListener("keydown", ($event) => {
 				if ($event.key === "Enter") {
 					addTask($event.target.value);
 					$event.target.value = "";
+					label.removeAttribute('prompt');
 				}
 			});
 
@@ -43,9 +118,9 @@
 			const addTask = (taskLabel) => {
 				if (template) {
 					const newRow = ErgoElement(template.content.cloneNode(true));
-					newRow.label.appendChild(document.createTextNode(taskLabel));
+					newRow.span.textContent = taskLabel;
 					newRow.button.addEventListener("click", removeTask);
-					section.ul.appendChild(newRow.self);
+					ul.appendChild(newRow.self);
 				}
 			};
 		</script>
