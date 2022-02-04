@@ -146,10 +146,15 @@
 		</template>
 		<script type="module">
 			import { ErgoElement } from "./assets/ErgoElement.js";
+			import {events} from './components/events.js'
 
 			const template = document.querySelector("#taskrow");
 			const { input, ul, label } = ErgoElement("section");
-
+			let tasks = [];
+			events.on('tasks-updated', ({detail: newTasks}) => {
+				tasks = newTasks;
+				renderTaskList(tasks);
+			})
 			input.addEventListener("input", ($event) => {
 				if ($event.target.value) {
 					label.setAttribute("prompt", "Press Enter");
@@ -166,18 +171,40 @@
 			});
 
 			const removeTask = ($event) => {
-				$event.target.closest("li").remove();
+				let li = $event.target.closest('li');
+				let liList = [...li.parentElement.children];
+				let index = liList.indexOf(li);
+				tasks.splice(index, 1);
+				renderTaskList(tasks);
 			};
 
 			const addTask = (taskLabel) => {
-				ul.style.display = null;
-				if (template) {
-					const newRow = ErgoElement(template.content.cloneNode(true));
-					newRow.span.textContent = taskLabel;
-					newRow.button.addEventListener("click", removeTask);
-					ul.appendChild(newRow.self);
-				}
+				tasks.push({text: taskLabel, checked: false});
+				renderTaskList(tasks);
 			};
+
+			const renderTaskList = tasks => {
+				ul.style.display = null;
+				for(let i = 0; i < tasks.length; i++) {
+					let task = tasks[i];
+					let {[`li:nth-child(${i + 1})`]: li } = ul;
+					if(li) {
+						li.span.textContent = task.text;
+						li.input.checked = task.done;
+					} else {
+						if (template) {
+							const newRow = ErgoElement(template.content.cloneNode(true));
+							newRow.span.textContent = task.text;
+							newRow.input.checked = task.done;
+							newRow.button.addEventListener("click", removeTask);
+							ul.appendChild(newRow.self);
+						}		
+					}
+				}
+				for(let i = ul.children.length - 1; i >= tasks.length; i--) {
+					ul.children[i].remove();
+				}
+			}
 		</script>
 	</body>
 </html>
