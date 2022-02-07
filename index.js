@@ -10,16 +10,14 @@ app.use(compression());
 
 const PORT = 8089;
 
-app.use(fileUpload());
-
-app.post("/video", uploadVideo);
+app.post("/video", fileUpload(), uploadVideo);
 app.get("/video", videolist);
 app.get("/video/:filename", videostream);
 app.get("/upload", (req, res) => {
-	res.sendFile(`${resolve()}/public/upload.html`);
+  res.sendFile(`${resolve()}/public/upload.html`);
 });
 app.get("/test", (req, res) => {
-	res.sendFile(`${resolve()}/public/test.html`);
+  res.sendFile(`${resolve()}/public/test.html`);
 });
 
 app.get("/components/*", express.static("./public"));
@@ -28,7 +26,7 @@ app.get("/css/*", express.static("./public"));
 app.get("/html/*", express.static("./public"));
 app.get("/thumbnails/*", express.static("./public"));
 app.get("*", (req, res) => {
-	res.sendFile(`${resolve()}/public/index.html`);
+  res.sendFile(`${resolve()}/public/index.html`);
 });
 
 app.listen(PORT);

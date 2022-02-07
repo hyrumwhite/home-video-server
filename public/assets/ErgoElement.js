@@ -56,14 +56,13 @@ export const ErgoElement = function (
     element = document.querySelector(element);
   }
 
-  function getElement(selector) {
-    let results = element.querySelectorAll(selector);
-    if (results.length == 1) {
-      return ErgoElement(results[0]);
-    } else if (results.length === 0) {
-      return null;
-    } else {
+  function getElement(selector, group) {
+    if (group) {
+      let results = element.querySelectorAll(selector);
       return ArrayProxy(results);
+    } else {
+      let result = element.querySelector(selector);
+      return result ? ErgoElement(result) : null;
     }
   }
 
@@ -79,6 +78,7 @@ export const ErgoElement = function (
       } else {
         if (prop && prop.startsWith(prefix)) {
           prop = prop.slice(prefix.length);
+          return target(prop, true);
         }
         return target(prop);
       }

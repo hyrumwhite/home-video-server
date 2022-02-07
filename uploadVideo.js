@@ -27,38 +27,38 @@ import fs from "fs/promises";
 
 // const db = new Db("Media");
 export const uploadVideo = async (req, res) => {
-	// try {
-	// 	const { generated_keys } = await db.action({
-	// 		table: "movies",
-	// 		method: "insert",
-	// 		params: [
-	// 			{
-	// 				name: req.files.name,
-	// 				genre: req.files.genre,
-	// 				tags: req.files.tags,
-	// 			},
-	// 		],
-	// 	});
-	// 	for (let key of generated_keys) {
-	// 		await fs.writeFile(`${__dirname}/videos/${key}.mp4`, req.files.video);
-	// 		if (req.files.thumbnail) {
-	// 			await fs.writeFile(
-	// 				`${__dirname}/thumbnails/${key}.mp4`,
-	// 				req.files.thumbnail
-	// 			);
-	// 		}
-	// 	}
-	// } catch (e) {
-	// 	console.error(e);
-	// }
-	console.log(req.files);
-	// await fs.writeFile(`videos/${req.body.name}.mp4`, req.files.video.data);
-	// console.log("made it here!!");
-	// if (req.files.thumbnail) {
-	// 	await fs.writeFile(
-	// 		`${__dirname}/thumbnails/${key}.mp4`,
-	// 		req.files.thumbnail
-	// 	);
-	// }
-	return res.send("success!");
+  // try {
+  // 	const { generated_keys } = await db.action({
+  // 		table: "movies",
+  // 		method: "insert",
+  // 		params: [
+  // 			{
+  // 				name: req.files.name,
+  // 				genre: req.files.genre,
+  // 				tags: req.files.tags,
+  // 			},
+  // 		],
+  // 	});
+  // 	for (let key of generated_keys) {
+  // 		await fs.writeFile(`${__dirname}/videos/${key}.mp4`, req.files.video);
+  // 		if (req.files.thumbnail) {
+  // 			await fs.writeFile(
+  // 				`${__dirname}/thumbnails/${key}.mp4`,
+  // 				req.files.thumbnail
+  // 			);
+  // 		}
+  // 	}
+  // } catch (e) {
+  // 	console.error(e);
+  // }
+  console.log(req.files, req.genres, req.tags);
+  // await fs.writeFile(`videos/${req.body.name}.mp4`, req.files.video.data);
+  // console.log("made it here!!");
+  // if (req.files.thumbnail) {
+  // 	await fs.writeFile(
+  // 		`${__dirname}/thumbnails/${key}.mp4`,
+  // 		req.files.thumbnail
+  // 	);
+  // }
+  return res.send("success!");
 };
