@@ -9,7 +9,6 @@ const handleFormSubmit = async ($event) => {
   $event.preventDefault();
   let form = $event.target;
   let formData = new FormData(form);
-  console.log(form.video);
   formData.append("video", form.video);
   formUpload({
     url: form.action,
@@ -19,6 +18,20 @@ const handleFormSubmit = async ($event) => {
       console.log(progress);
     },
   });
+};
+
+const displayThumbnail = ($event) => {
+  let { files } = $event.target;
+  let imgFile = files[0];
+  if (imgFile) {
+    const reader = new FileReader();
+    let { img } = ErgoElement($event.target.closest("label"));
+    reader.addEventListener("load", ({ target }) => {
+      img.src = target.result;
+      img.style.display = null;
+    });
+    reader.readAsDataURL(imgFile);
+  }
 };
 
 /**
@@ -34,6 +47,8 @@ const createMovieList = ({ detail: movies }) => {
     form.video = movie;
     form.setAttribute("name", `movie-${i}`);
     form.addEventListener("submit", handleFormSubmit, { capture: true });
+    let { 'input[name="thumbnail"]': thumbnailInput } = form;
+    thumbnailInput.addEventListener("change", displayThumbnail);
     if (li) {
       let nameInput = li`input[name="name"]`;
       nameInput.value = movie.name;
