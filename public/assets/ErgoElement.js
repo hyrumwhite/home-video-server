@@ -76,7 +76,8 @@ export const ErgoElement = function (
       } else if (prop in element) {
         return element[prop];
       } else {
-        if (prop && prop.startsWith(prefix)) {
+        console.log(prop);
+        if (prop && prop.startsWith && prop.startsWith(prefix)) {
           prop = prop.slice(prefix.length);
           return target(prop, true);
         }
