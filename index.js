@@ -16,11 +16,12 @@ const storage = multer.diskStorage({
 		}
 	},
 	filename: function (req, file, cb) {
-		cb(null, `${uuidv4()}.${file.originalname.split(".")[1]}`);
+		cb(null, `temp-${uuidv4()}.${file.originalname.split(".")[1]}`);
 	},
 });
 const upload = multer({ storage });
 const videoUpload = upload.fields([{ name: "video" }, { name: "thumbnail" }]);
+
 const app = express();
 app.use(compression());
 
