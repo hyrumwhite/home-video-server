@@ -1,3 +1,3 @@
-import { DB } from "./db";
+import { DB } from "./db.js";
 
-export const mediaDB = new DB("media");
+export const mediaDB = new DB("Media");
