@@ -24,6 +24,11 @@ nav.GenreSlider a {
 	overflow: hidden;
 }
 
+nav.GenreSlider a img {
+	object-fit: fill;
+	height: 150px;
+}
+
 nav.GenreSlider .horizontal-scroller {
 	display: flex;
 	align-items: flex-start;
