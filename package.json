@@ -16,6 +16,7 @@
     "express": "^4.17.2",
     "multer": "^1.4.4",
     "rethinkdb": "^2.4.2",
+    "serve-static": "^1.15.0",
     "terser": "^5.10.0",
     "uuid": "^8.3.2"
   }

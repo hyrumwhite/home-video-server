@@ -14,11 +14,25 @@ const getData = () =>
 						{ name: "Wolfwalkers", id: "wolfwalkers", thumbnail: true },
 						{ name: "Song of the Sea", id: "songofthesea" },
 						{ name: "Secret of Kells", id: "secretofkells" },
-						{ name: "The Bad Guys", id: "badguys", thumbnail: true },
+						{ name: "The Bad Guys", id: "badguys.m4v", thumbnail: true },
+						{
+							name: "peculiarchildren",
+							id: "peculiarchildren",
+							thumbnail: false,
+						},
+						{ name: "HTTYD2", id: "howtotrainyourdragon2", thumbnail: true },
+						{
+							name: "Pirates of the Carribean",
+							id: "piratesofthecarribean",
+							thumbnail: true,
+						},
+						{
+							name: "The Lego Movie",
+							id: "legomovie",
+							thumbnail: true,
+						},
 						{ name: "Barbie: Pink Shoes", id: "barbieinthepinkshoes" },
-						{ name: "Twilight", id: 1238 },
-						{ name: "Free Solo", id: 1239 },
-						{ name: "Shrek", id: 1240 },
+						{ name: "Interstellar", id: "interstellar" },
 					],
 				},
 				{
@@ -70,7 +84,7 @@ const generateSliders = async (slot) => {
 			anchor.classList.remove("placeholder");
 			if (movie.thumbnail) {
 				let img = anchor.querySelector("img");
-				img.src = `/thumbnails/${movie.id}.jpg`;
+				img.src = `/thumbnails/${movie.id.split(".")[0]}.jpg`;
 				anchor.appendChild(img);
 			} else {
 				anchor.textContent = movie.name;

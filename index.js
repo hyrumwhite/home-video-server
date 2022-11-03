@@ -6,6 +6,7 @@ import { resolve } from "path";
 import compression from "compression";
 import { v4 as uuidv4 } from "uuid";
 import multer from "multer";
+import serveStatic from "serve-static";
 
 const storage = multer.diskStorage({
 	destination: function (req, file, cb) {
@@ -23,11 +24,12 @@ const upload = multer({ storage });
 const videoUpload = upload.fields([{ name: "video" }, { name: "thumbnail" }]);
 
 const app = express();
-app.use(compression());
+// app.use(compression());
 
 const PORT = 8089;
 
 // app.post("/video", videoUpload, uploadVideo);
+app.use(serveStatic("./videos"));
 app.get("/video", videolist);
 app.get("/video/:filename", videostream);
 app.get("/upload", (req, res) => {
